@@ -6,7 +6,7 @@ from agenda.models import Agenda
 from news.models import News
 
 from .forms import ContactForm
-from .models import Division, Management, OrganizationProfile
+from .models import Division, Management, OrganizationProfile, Ranting, AmalUsaha
 
 
 def home(request):
@@ -38,6 +38,8 @@ def profile(request):
         "org": org,
         "groups": groups,
         "leaders": leaders,
+        "ranting_list": Ranting.objects.filter(aktif=True).order_by("urutan", "nama"),
+        "amal_usaha_list": AmalUsaha.objects.filter(aktif=True).select_related("ranting").order_by("nama"),
     })
 
 

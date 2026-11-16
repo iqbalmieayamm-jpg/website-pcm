@@ -86,4 +86,78 @@
     {% endif %}
   </div>
 </section>
+
+<!-- ===== AMAL USAHA ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Layanan &amp; Pengabdian</p><h2>Amal Usaha</h2></div>
+    </div>
+    {% if amal_usaha_list %}
+      <div class="row g-4">
+        {% for a in amal_usaha_list %}
+          <div class="col-md-6 col-lg-4">
+            <div class="content-card reveal h-100">
+              <h3>{{ a.nama }}</h3>
+              <p class="muted">
+                {{ a.jenis }}{% if a.ranting %} · Ranting {{ a.ranting.nama }}{% endif %}
+              </p>
+              {% if a.deskripsi %}<p>{{ a.deskripsi|truncatewords:30 }}</p>{% endif %}
+              <ul class="contact-list">
+                {% if a.alamat %}<li><i class="bi bi-geo-alt"></i><span>{{ a.alamat }}</span></li>{% endif %}
+                {% if a.pimpinan %}<li><i class="bi bi-person"></i><span>{{ a.pimpinan }}</span></li>{% endif %}
+                {% if a.telepon %}<li><i class="bi bi-telephone"></i><span>{{ a.telepon }}</span></li>{% endif %}
+              </ul>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state reveal">
+        <i class="bi bi-building"></i>
+        <h3>Data amal usaha sedang disiapkan</h3>
+        <p>Daftar amal usaha akan tampil setelah diisi oleh pengurus.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ===== RANTING ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Wilayah Kerja</p><h2>Ranting</h2></div>
+    </div>
+    {% if ranting_list %}
+      <div class="row g-4">
+        {% for r in ranting_list %}
+          <div class="col-md-6 col-lg-4">
+            <div class="content-card reveal h-100">
+              {% if r.foto %}
+                <img src="{{ r.foto.url }}" alt="{{ r.nama }}" loading="lazy" style="width:100%;border-radius:12px;margin-bottom:1rem;">
+              {% endif %}
+              <h3>{{ r.nama }}</h3>
+              <p class="muted">
+                {{ r.desa_kelurahan }}{% if r.kecamatan %}, Kec. {{ r.kecamatan }}{% endif %}
+              </p>
+              {% if r.deskripsi %}<p>{{ r.deskripsi|truncatewords:30 }}</p>{% endif %}
+              <ul class="contact-list">
+                {% if r.ketua %}<li><i class="bi bi-person"></i><span>Ketua: {{ r.ketua }}</span></li>{% endif %}
+                {% if r.alamat %}<li><i class="bi bi-geo-alt"></i><span>{{ r.alamat }}</span></li>{% endif %}
+                {% if r.telepon %}<li><i class="bi bi-telephone"></i><span>{{ r.telepon }}</span></li>{% endif %}
+                {% if r.email %}<li><i class="bi bi-envelope"></i><span>{{ r.email }}</span></li>{% endif %}
+              </ul>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state reveal">
+        <i class="bi bi-geo-alt"></i>
+        <h3>Data ranting sedang disiapkan</h3>
+        <p>Daftar ranting akan tampil setelah diisi oleh pengurus.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
 {% endblock %}
