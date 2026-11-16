@@ -100,7 +100,7 @@
             <div class="content-card reveal h-100">
               <h3>{{ a.nama }}</h3>
               <p class="muted">
-                {{ a.jenis }}{% if a.ranting %} · Ranting {{ a.ranting.nama }}{% endif %}
+                {{ a.get_jenis_display }}{% if a.ranting %} · Ranting {{ a.ranting.nama }}{% endif %}
               </p>
               {% if a.deskripsi %}<p>{{ a.deskripsi|truncatewords:30 }}</p>{% endif %}
               <ul class="contact-list">
