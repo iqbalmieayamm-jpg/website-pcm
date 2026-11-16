@@ -13,6 +13,11 @@ class TimeStampedModel(models.Model):
 
 class OrganizationProfile(TimeStampedModel):
     nama = models.CharField("Nama PCM", max_length=150, default="Pimpinan Cabang Muhammadiyah")
+    nama_singkat = models.CharField(max_length=50, blank=True)
+    tagline = models.CharField(max_length=200, blank=True)
+    tentang = models.TextField(blank=True)
+    jumlah_anggota = models.PositiveIntegerField("Jumlah anggota ber-KTAM", default=0)
+    gambar_hero = models.ImageField(upload_to="organization/", blank=True, null=True)
     kecamatan = models.CharField(max_length=100, blank=True)
     kabupaten = models.CharField("Kabupaten/Kota", max_length=100, blank=True)
     provinsi = models.CharField(max_length=100, blank=True)
@@ -104,6 +109,106 @@ phone_validator = RegexValidator(
     regex=r"^[0-9+\-\s]{9,20}$",
     message="Nomor telepon hanya boleh angka, +, -, dan spasi (9–20 karakter).",
 )
+
+class Ranting(TimeStampedModel):
+    nama = models.CharField(max_length=120)
+    slug = models.SlugField(unique=True)
+    alamat = models.TextField(blank=True)
+    desa_kelurahan = models.CharField(max_length=120, blank=True)
+    kecamatan = models.CharField(max_length=120, blank=True)
+    ketua = models.CharField(max_length=120, blank=True)
+    telepon = models.CharField(
+        max_length=20, blank=True, validators=[phone_validator]
+    )
+    email = models.EmailField(blank=True)
+    deskripsi = models.TextField(blank=True)
+    foto = models.ImageField(upload_to="ranting/", blank=True)
+    urutan = models.PositiveIntegerField(default=0)
+    aktif = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["urutan", "nama"]
+        verbose_name = "Ranting"
+        verbose_name_plural = "Ranting"
+
+    def __str__(self):
+        return self.nama
+
+
+class AmalUsaha(TimeStampedModel):
+    JENIS = [
+        ("pendidikan", "Pendidikan"),
+        ("kesehatan", "Kesehatan"),
+        ("sosial", "Sosial / Panti"),
+        ("ekonomi", "Ekonomi"),
+        ("dakwah", "Dakwah / Masjid"),
+        ("lainnya", "Lainnya"),
+    ]
+
+    nama = models.CharField(max_length=150)
+    slug = models.SlugField(unique=True)
+    jenis = models.CharField(max_length=20, choices=JENIS, default="lainnya")
+    ranting = models.ForeignKey(
+        Ranting,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="amal_usaha",
+    )
+    alamat = models.TextField(blank=True)
+    pimpinan = models.CharField(max_length=120, blank=True)
+    telepon = models.CharField(
+        max_length=20, blank=True, validators=[phone_validator]
+    )
+    deskripsi = models.TextField(blank=True)
+    foto = models.ImageField(upload_to="amal_usaha/", blank=True)
+    urutan = models.PositiveIntegerField(default=0)
+    aktif = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["jenis", "urutan", "nama"]
+        verbose_name = "Amal Usaha"
+        verbose_name_plural = "Amal Usaha"
+
+    def __str__(self):
+        return self.nama
+
+
+class AmalUsaha(TimeStampedModel):
+    JENIS = [
+        ("pendidikan", "Pendidikan"),
+        ("kesehatan", "Kesehatan"),
+        ("sosial", "Sosial / Panti"),
+        ("ekonomi", "Ekonomi"),
+        ("dakwah", "Dakwah / Masjid"),
+        ("lainnya", "Lainnya"),
+    ]
+
+    nama = models.CharField(max_length=150)
+    slug = models.SlugField(unique=True)
+    jenis = models.CharField(max_length=20, choices=JENIS, default="lainnya")
+    ranting = models.ForeignKey(
+        Ranting,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="amal_usaha",
+    )
+    alamat = models.TextField(blank=True)
+    pimpinan = models.CharField(max_length=120, blank=True)
+    telepon = models.CharField(
+        max_length=20, blank=True, validators=[phone_validator]
+    )
+    deskripsi = models.TextField(blank=True)
+    aktif = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["jenis", "nama"]
+        verbose_name = "Amal Usaha"
+        verbose_name_plural = "Amal Usaha"
+
+    def __str__(self):
+        return self.nama
 
 
 class ContactMessage(TimeStampedModel):

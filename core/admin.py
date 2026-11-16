@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import ContactMessage, Division, Management, OrganizationProfile
+from .models import (            # BARU: import diubah jadi multi-baris
+    AmalUsaha,                   # BARU
+    ContactMessage,
+    Division,
+    Management,
+    OrganizationProfile,
+    Ranting,                     # BARU
+)
 
 admin.site.site_header = "Administrasi Website PCM"
 admin.site.site_title = "Admin PCM"
@@ -31,6 +38,24 @@ class ManagementAdmin(admin.ModelAdmin):
     list_filter = ("aktif", "division")
     search_fields = ("nama", "jabatan")
     list_editable = ("urutan", "aktif")
+
+
+# BARU: mulai dari sini
+@admin.register(Ranting)
+class RantingAdmin(admin.ModelAdmin):
+    list_display = ("nama", "kecamatan", "ketua", "aktif")
+    list_filter = ("aktif", "kecamatan")
+    search_fields = ("nama", "ketua", "kecamatan")
+    prepopulated_fields = {"slug": ("nama",)}
+
+
+@admin.register(AmalUsaha)
+class AmalUsahaAdmin(admin.ModelAdmin):
+    list_display = ("nama", "jenis", "ranting", "aktif")
+    list_filter = ("jenis", "ranting", "aktif")
+    search_fields = ("nama", "pimpinan")
+    prepopulated_fields = {"slug": ("nama",)}
+# BARU: sampai sini
 
 
 @admin.register(ContactMessage)
