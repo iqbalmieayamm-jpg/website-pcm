@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Profil — {{ org.nama }}{% endblock %}
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    <p class="eyebrow reveal">Tentang Kami</p>
+    <h1 class="reveal">Profil Organisasi</h1>
+    <p class="reveal">{{ org.nama }}{% if org.wilayah %} — {{ org.wilayah }}{% endif %}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="content-card reveal">
+          <h2>Sejarah</h2>
+          {% if org.sejarah %}{{ org.sejarah|linebreaks }}{% else %}<p class="muted">Sejarah organisasi akan dimuat setelah data resmi tersedia.</p>{% endif %}
+        </div>
+        <div class="row g-4 mt-1">
+          <div class="col-md-6">
+            <div class="content-card vm-card reveal">
+              <span class="vm-icon"><i class="bi bi-eye"></i></span>
+              <h2>Visi</h2>
+              {% if org.visi %}{{ org.visi|linebreaks }}{% else %}<p class="muted">Visi akan dimuat setelah data resmi tersedia.</p>{% endif %}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="content-card vm-card reveal">
+              <span class="vm-icon"><i class="bi bi-bullseye"></i></span>
+              <h2>Misi</h2>
+              {% if org.misi %}{{ org.misi|linebreaks }}{% else %}<p class="muted">Misi akan dimuat setelah data resmi tersedia.</p>{% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <aside class="content-card contact-card reveal">
+          <h2>Kantor &amp; Kontak</h2>
+          <ul class="contact-list">
+            {% if org.alamat %}<li><i class="bi bi-geo-alt"></i><span>{{ org.alamat|linebreaksbr }}</span></li>{% endif %}
+            {% if org.telepon %}<li><i class="bi bi-telephone"></i><span>{{ org.telepon }}</span></li>{% endif %}
+            {% if org.email %}<li><i class="bi bi-envelope"></i><span>{{ org.email }}</span></li>{% endif %}
+            {% if org.jam_kantor %}<li><i class="bi bi-clock"></i><span>{{ org.jam_kantor }}</span></li>{% endif %}
+          </ul>
+          {% if org.maps_embed %}
+            <div class="map-embed"><iframe src="{{ org.maps_embed }}" loading="lazy" title="Peta lokasi kantor"></iframe></div>
+          {% endif %}
+          <a class="btn btn-pcm w-100 mt-3" href="{% url 'core:contact' %}">Kirim Pesan</a>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Kepengurusan</p><h2>Struktur &amp; Pengurus</h2></div>
+    </div>
+    {% if leaders %}
+      <div class="row g-4 mb-4">
+        {% for p in leaders %}
+          <div class="col-6 col-md-4 col-lg-3">{% include "partials/person_card.html" with p=p %}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% for g in groups %}
+      {% if g.members %}
+        <div class="group-block reveal">
+          <h3 class="group-title"><i class="bi bi-diagram-3"></i> {{ g.division.nama }}</h3>
+          <div class="row g-4">
+            {% for p in g.members %}
+              <div class="col-6 col-md-4 col-lg-3">{% include "partials/person_card.html" with p=p %}</div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    {% if not leaders and not groups %}
+      <div class="empty-state reveal">
+        <i class="bi bi-people"></i>
+        <h3>Data pengurus sedang disiapkan</h3>
+        <p>Struktur kepengurusan akan tampil setelah diisi oleh pengurus.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
