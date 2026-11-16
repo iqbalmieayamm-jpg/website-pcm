@@ -11,6 +11,7 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
+
 class OrganizationProfile(TimeStampedModel):
     nama = models.CharField("Nama PCM", max_length=150, default="Pimpinan Cabang Muhammadiyah")
     kecamatan = models.CharField(max_length=100, blank=True)
@@ -38,6 +39,12 @@ class OrganizationProfile(TimeStampedModel):
 
     def save(self, *args, **kwargs):
         self.pk = 1
+
+        if self._state.adding:
+            existing = type(self).objects.filter(pk=1).only("created_at").first()
+            if existing:
+                self.created_at = existing.created_at
+
         super().save(*args, **kwargs)
 
     @classmethod
@@ -49,6 +56,7 @@ class OrganizationProfile(TimeStampedModel):
     def wilayah(self):
         parts = [p for p in [self.kecamatan, self.kabupaten, self.provinsi] if p]
         return ", ".join(parts)
+
 
 
 class Division(TimeStampedModel):
