@@ -65,7 +65,10 @@
             <img src="{% static 'images/logo-muhammadiyah.png' %}" alt="Logo Muhammadiyah" class="brand-logo footer-logo">
             <strong>{{ org.nama }}</strong>
           </div>
-          <p class="footer-desc">Website resmi Pimpinan Cabang Muhammadiyah. Kanal informasi, publikasi kegiatan, dan layanan aspirasi masyarakat.</p>
+          <p class="footer-desc">
+            Website informasi PCM Banjarsari, Surakarta. Website ini dikembangkan sebagai proyek tugas perkuliahan
+            dan bukan merupakan website resmi Pimpinan Cabang Muhammadiyah.
+          </p>
           <div class="d-flex gap-2">
             {% if org.instagram %}<a class="social-btn" href="{{ org.instagram }}" aria-label="Instagram"><i class="bi bi-instagram"></i></a>{% endif %}
             {% if org.facebook %}<a class="social-btn" href="{{ org.facebook }}" aria-label="Facebook"><i class="bi bi-facebook"></i></a>{% endif %}
