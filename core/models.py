@@ -182,43 +182,6 @@ class AmalUsaha(TimeStampedModel):
         return self.nama
 
 
-class AmalUsaha(TimeStampedModel):
-    JENIS = [
-        ("pendidikan", "Pendidikan"),
-        ("kesehatan", "Kesehatan"),
-        ("sosial", "Sosial / Panti"),
-        ("ekonomi", "Ekonomi"),
-        ("dakwah", "Dakwah / Masjid"),
-        ("lainnya", "Lainnya"),
-    ]
-
-    nama = models.CharField(max_length=150)
-    slug = models.SlugField(unique=True)
-    jenis = models.CharField(max_length=20, choices=JENIS, default="lainnya")
-    ranting = models.ForeignKey(
-        Ranting,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="amal_usaha",
-    )
-    alamat = models.TextField(blank=True)
-    pimpinan = models.CharField(max_length=120, blank=True)
-    telepon = models.CharField(
-        max_length=20, blank=True, validators=[phone_validator]
-    )
-    deskripsi = models.TextField(blank=True)
-    aktif = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ["jenis", "nama"]
-        verbose_name = "Amal Usaha"
-        verbose_name_plural = "Amal Usaha"
-
-    def __str__(self):
-        return self.nama
-
-
 class ContactMessage(TimeStampedModel):
     STATUS = [
         ("baru", "Baru"),
