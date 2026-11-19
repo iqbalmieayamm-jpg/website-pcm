@@ -19,13 +19,7 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-pcm" id="navbar">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'core:home' %}">
-        {% if org.logo %}
-          <img src="{{ org.logo.url }}" alt="Logo {{ org.nama }}" class="brand-logo">
-        {% else %}
-          <span class="brand-sun" aria-hidden="true">
-            <svg viewBox="0 0 48 48" width="34" height="34"><g fill="currentColor"><circle cx="24" cy="24" r="9"/><g>{% for i in "123456789012" %}<rect x="22.6" y="2" width="2.8" height="9" rx="1.4" transform="rotate({{ forloop.counter0 }}0 24 24)"/>{% endfor %}</g></g></svg>
-          </span>
-        {% endif %}
+        <img src="{% static 'images/logo-muhammadiyah.png' %}" alt="Logo Muhammadiyah" class="brand-logo">
         <span class="brand-text">
           <strong>{{ org.nama|truncatechars:28 }}</strong>
           <small>{{ org.wilayah|default:"PCM Banjarsari" }}</small>
