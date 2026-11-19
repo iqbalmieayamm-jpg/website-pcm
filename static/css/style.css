@@ -216,6 +216,25 @@ img { max-width: 100%; }
 .content-card { background: var(--pcm-surface); border: 1px solid var(--pcm-border); border-radius: var(--pcm-radius); padding: 1.8rem; box-shadow: var(--pcm-shadow); }
 .content-card h2 { font-size: 1.3rem; margin-bottom: 1rem; }
 .muted { color: var(--pcm-muted); }
+.directory-heading { align-items: center; justify-content: flex-start; flex-wrap: nowrap; gap: 1rem; margin-bottom: 1.5rem; }
+.directory-heading-icon { display: grid; place-items: center; flex: 0 0 48px; width: 48px; height: 48px; border-radius: 14px; background: #fff; color: var(--pcm-green); box-shadow: var(--pcm-shadow); font-size: 1.35rem; }
+.directory-heading .eyebrow { margin-bottom: .25rem; }
+.directory-heading h2 { font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+.directory-heading-desc { color: var(--pcm-muted); font-size: .88rem; margin: .4rem 0 0; }
+.directory-card { height: auto; overflow: hidden; padding: 0; }
+.directory-card-image { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; background: var(--pcm-sky); }
+.directory-card-body { padding: 1.5rem 1.6rem; }
+.directory-card h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.35; margin: 0; overflow-wrap: anywhere; }
+.directory-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
+.directory-tag { display: inline-flex; align-items: center; border-radius: 999px; background: #e5f5ec; color: var(--pcm-dark); font-size: .76rem; font-weight: 700; padding: .32rem .7rem; }
+.directory-tag-muted { background: var(--pcm-sky); color: var(--pcm-muted); }
+.directory-location { display: flex; align-items: flex-start; gap: .5rem; color: var(--pcm-muted); font-size: .88rem; margin: .7rem 0 0; }
+.directory-location i { color: var(--pcm-green); margin-top: .15rem; }
+.directory-description { color: var(--pcm-text); font-size: .92rem; line-height: 1.7; margin: 1rem 0 0; }
+.directory-details { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--pcm-border); font-size: .9rem; }
+.directory-details li { align-items: flex-start; line-height: 1.55; overflow-wrap: anywhere; }
+.directory-details i { flex: 0 0 1rem; color: var(--pcm-green); margin-top: .2rem; }
+.directory-empty { padding: 2rem 1rem; }
 .vm-card .vm-icon { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--pcm-sky); color: var(--pcm-blue); font-size: 1.3rem; margin-bottom: .8rem; }
 .contact-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .9rem; }
 .contact-list li { display: flex; gap: .8rem; }
