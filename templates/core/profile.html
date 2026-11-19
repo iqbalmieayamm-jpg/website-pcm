@@ -95,6 +95,40 @@
 <section class="section section-alt">
   <div class="container">
     <div class="section-head reveal">
+      <div><p class="eyebrow">Administrasi</p><h2>Kesekretariatan</h2></div>
+    </div>
+    <div class="row g-4 mb-5">
+      <div class="col-md-6 col-lg-3">
+        <div class="content-card reveal h-100">
+          <span class="vm-icon"><i class="bi bi-geo-alt"></i></span>
+          <h3 class="h6">Alamat Sekretariat</h3>
+          {% if org.alamat %}<p class="muted mb-0">{{ org.alamat|linebreaksbr }}</p>{% else %}<p class="muted mb-0">Alamat sekretariat belum tersedia.</p>{% endif %}
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="content-card reveal h-100">
+          <span class="vm-icon"><i class="bi bi-telephone"></i></span>
+          <h3 class="h6">Telepon</h3>
+          {% if org.telepon %}<p class="muted mb-0">{{ org.telepon }}</p>{% else %}<p class="muted mb-0">Nomor telepon belum tersedia.</p>{% endif %}
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="content-card reveal h-100">
+          <span class="vm-icon"><i class="bi bi-envelope"></i></span>
+          <h3 class="h6">Email</h3>
+          {% if org.email %}<p class="muted mb-0">{{ org.email }}</p>{% else %}<p class="muted mb-0">Email sekretariat belum tersedia.</p>{% endif %}
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="content-card reveal h-100">
+          <span class="vm-icon"><i class="bi bi-clock"></i></span>
+          <h3 class="h6">Jam Pelayanan</h3>
+          {% if org.jam_kantor %}<p class="muted mb-0">{{ org.jam_kantor }}</p>{% else %}<p class="muted mb-0">Jam pelayanan belum tersedia.</p>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head reveal">
       <div><p class="eyebrow">Kepengurusan</p><h2>Struktur &amp; Pengurus</h2></div>
     </div>
     {% if leaders %}
