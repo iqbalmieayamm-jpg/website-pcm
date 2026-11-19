@@ -4,6 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  const heroSlides = document.querySelectorAll(".hero-slide");
+  if (heroSlides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let activeSlide = 0;
+    window.setInterval(() => {
+      heroSlides[activeSlide].classList.remove("is-active");
+      activeSlide = (activeSlide + 1) % heroSlides.length;
+      heroSlides[activeSlide].classList.add("is-active");
+    }, 6000);
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) {

@@ -1,8 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Beranda — {{ org.nama }}{% endblock %}
 {% block content %}
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-slide is-active"><img src="{% static 'images/latar belakang 1.jpeg' %}" alt=""></div>
+    <div class="hero-slide"><img src="{% static 'images/latar belakang 2.jpeg' %}" alt=""></div>
+    <div class="hero-slide"><img src="{% static 'images/latar belakang 3.jpeg' %}" alt=""></div>
+  </div>
   <div class="container hero-inner">
     <div class="row align-items-center g-5">
       <div class="col-lg-7">
