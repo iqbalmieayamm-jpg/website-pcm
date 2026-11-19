@@ -20,23 +20,20 @@
           <h2>Informasi Kontak</h2>
 
           <ul class="contact-list">
-            {% if org.alamat %}
-              <li><i class="bi bi-geo-alt"></i><span>{{ org.alamat|linebreaksbr }}</span></li>
-            {% endif %}
-            {% if org.telepon %}
-              <li><i class="bi bi-telephone"></i><span>{{ org.telepon }}</span></li>
-            {% endif %}
-            {% if org.email %}
-              <li><i class="bi bi-envelope"></i><span>{{ org.email }}</span></li>
-            {% endif %}
-            {% if org.jam_kantor %}
-              <li><i class="bi bi-clock"></i><span>{{ org.jam_kantor }}</span></li>
-            {% endif %}
+            <li>
+              <i class="bi bi-geo-alt" aria-hidden="true"></i>
+              <span><strong>Alamat</strong><br>Gedung Wisma Musholla Pemuda, Jl. Jageran No. 10, Ketelan, Banjarsari, Kota Surakarta</span>
+            </li>
+            <li>
+              <i class="bi bi-telephone" aria-hidden="true"></i>
+              <span>
+                <strong>Telepon/WA resmi</strong><br>
+                <a href="tel:+6285642223008">085642223008</a>
+                &middot;
+                <a href="https://wa.me/6285642223008" target="_blank" rel="noopener noreferrer">Chat WhatsApp</a>
+              </span>
+            </li>
           </ul>
-
-          {% if not org.alamat and not org.telepon and not org.email %}
-            <p class="muted">Informasi kontak resmi sedang dilengkapi oleh pengurus.</p>
-          {% endif %}
 
           {% if org.maps_embed %}
             <div class="map-embed">
