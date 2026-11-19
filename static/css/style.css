@@ -252,7 +252,7 @@ img { max-width: 100%; }
 .field-error { color: var(--pcm-red); font-size: .8rem; margin-top: .3rem; }
 
 .footer-pcm { background: var(--pcm-navy); color: #dceee3; padding: 3.5rem 0 1.5rem; margin-top: 0; }
-.footer-sun { color: var(--pcm-gold); }
+.footer-logo { width: 40px; height: 40px; }
 .footer-desc { font-size: .9rem; max-width: 380px; }
 .footer-title { color: #fff; font-size: .95rem; margin-bottom: 1rem; }
 .footer-links, .footer-contact { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; font-size: .88rem; }
