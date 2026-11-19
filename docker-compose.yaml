@@ -19,7 +19,7 @@ services:
     environment:
       DEBUG: "False"
       SECRET_KEY: "docker-dev-secret-ganti-nanti"
-      ALLOWED_HOSTS: "localhost,127.0.0.1,web"
+      ALLOWED_HOSTS: "localhost,127.0.0.1,web"  
       DATABASE_URL: "postgres://pcm:pcm_secret@db:5432/pcm"
     volumes:
       - media:/app/media
